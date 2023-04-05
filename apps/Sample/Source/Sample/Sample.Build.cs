@@ -1,9 +1,15 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 using UnrealBuildTool;
+using System.IO;
 
 public class Sample : ModuleRules
 {
+    private string ThirdPartyPath
+    {
+        get { return Path.GetFullPath(Path.Combine(ModuleDirectory, "ThirdParty/")); }
+    }
+
     public Sample(ReadOnlyTargetRules Target) : base(Target)
     {
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
@@ -11,6 +17,14 @@ public class Sample : ModuleRules
         PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "HTTP", "Json" });
 
         PrivateDependencyModuleNames.AddRange(new string[] { });
+
+        PublicIncludePaths.AddRange(new string[] {
+            Path.Combine(ThirdPartyPath, "AzureSpeechSDK", "Include")
+        });
+
+        PublicAdditionalLibraries.AddRange(new string[] {
+            Path.Combine(ThirdPartyPath, "AzureSpeechSDK", "Lib", "Microsoft.CognitiveServices.Speech.core.lib")
+        });
 
         // Uncomment if you are using Slate UI
         // PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });

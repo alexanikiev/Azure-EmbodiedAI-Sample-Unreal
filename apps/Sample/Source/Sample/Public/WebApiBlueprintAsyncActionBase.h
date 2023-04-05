@@ -18,7 +18,7 @@ class SAMPLE_API UWebApiBlueprintAsyncActionBase : public UBlueprintAsyncActionB
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable, Category = "Web API")
+	UFUNCTION(BlueprintCallable, Category = "Sample")
 		static UWebApiBlueprintAsyncActionBase* SampleWebApi();
 
 	UPROPERTY(BlueprintAssignable)

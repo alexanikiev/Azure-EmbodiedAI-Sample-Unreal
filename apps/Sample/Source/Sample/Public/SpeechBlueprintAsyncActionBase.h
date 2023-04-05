@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintAsyncActionBase.h"
+#include <speechapi_cxx.h>
 #include "SpeechBlueprintAsyncActionBase.generated.h"
 
 /**
@@ -14,4 +15,9 @@ class SAMPLE_API USpeechBlueprintAsyncActionBase : public UBlueprintAsyncActionB
 {
 	GENERATED_BODY()
 
+public:
+	UFUNCTION(BlueprintCallable, Category = "Sample")
+		static USpeechBlueprintAsyncActionBase* SampleSpeak();
+
+	virtual void Activate() override;
 };

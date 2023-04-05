@@ -7,6 +7,7 @@ Under construction
 
 ## Prerequisites
 
-| Prerequisite                   | Download Link                                                   | Version           |
-|--------------------------------|-----------------------------------------------------------------|-------------------|
-| Unreal Engine                  | https://www.unrealengine.com/en-US/download                     | 5.1.1             |
+| Prerequisite                   | Download Link                                                     | Version           |
+|--------------------------------|-------------------------------------------------------------------|-------------------|
+| Unreal Engine                  | https://www.unrealengine.com/en-US/download                       | 5.1.1             |
+| Azure Speech SDK (C++ Native)  | https://www.nuget.org/packages/Microsoft.CognitiveServices.Speech | 1.26.0            |
