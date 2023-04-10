@@ -7,12 +7,13 @@
 #include "Serialization/JsonReader.h"
 #include "Serialization/JsonSerializer.h"
 
-UOpenAIBlueprintAsyncActionBase* UOpenAIBlueprintAsyncActionBase::SampleOpenAI(const EOpenAIApiType& OpenAIApiType)
+UOpenAIBlueprintAsyncActionBase* UOpenAIBlueprintAsyncActionBase::SampleOpenAI(const FString& Text, const EOpenAIApiType& OpenAIApiType)
 {
 	UOpenAIBlueprintAsyncActionBase* OpenAIAction = NewObject<UOpenAIBlueprintAsyncActionBase>();
 	OpenAIAction->OpenAIApiKey = "";
 	OpenAIAction->AzureOpenAISubscriptionKey = "";
 	OpenAIAction->AzureOpenAIRegion = "";
+	OpenAIAction->Text = Text;
 	OpenAIAction->OpenAIApiType = OpenAIApiType;
 	return OpenAIAction;
 }
@@ -32,7 +33,7 @@ void UOpenAIBlueprintAsyncActionBase::Activate()
 
 		TArray<FString> SampleInputs = {
 			"Clippy is an endearing and helpful digital assistant, designed to make using Microsoft Office Suite of products more efficient and user-friendly. With his iconic paperclip shape and friendly personality, Clippy is always ready and willing to assist users with any task or question they may have. His ability to anticipate and address potential issues before they even arise has made him a beloved and iconic figure in the world of technology, widely recognized as an invaluable tool for productivity.",
-			"What is Azure Cognitive Search?"
+			*Text
 		};
 		FString Prompt = UOpenAIBlueprintAsyncActionBase::ComposePrompt(SampleInputs);
 		FString RequestBody = FString::Printf(TEXT("{\"prompt\": \"%s\",\"temperature\": 0.5,\"top_p\": 0.95,\"frequency_penalty\": 0,\"presence_penalty\": 0,\"max_tokens\": 800,\"stop\": [\"<|im_end|>\"]}"), *Prompt);
@@ -50,7 +51,7 @@ void UOpenAIBlueprintAsyncActionBase::Activate()
 
 		FString RequestBody = FString::Printf(
 			TEXT("{\"prompt\":\"%s\",\"n\":%d,\"size\":\"%s\"}"),
-			TEXT("a white siamese cat"),
+			*Text,
 			1,
 			TEXT("256x256")
 		);

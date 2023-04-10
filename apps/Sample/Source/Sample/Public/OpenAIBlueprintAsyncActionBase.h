@@ -26,7 +26,7 @@ class SAMPLE_API UOpenAIBlueprintAsyncActionBase : public UBlueprintAsyncActionB
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Sample")
-		static UOpenAIBlueprintAsyncActionBase* SampleOpenAI(const EOpenAIApiType& OpenAIApiType = EOpenAIApiType::ChatGPT);
+		static UOpenAIBlueprintAsyncActionBase* SampleOpenAI(const FString& Text, const EOpenAIApiType& OpenAIApiType = EOpenAIApiType::ChatGPT);
 
 	UPROPERTY(BlueprintAssignable)
 		FOpenAIResult OnSuccess;
@@ -40,6 +40,7 @@ private:
 	FString OpenAIApiKey;
 	FString AzureOpenAISubscriptionKey;
 	FString AzureOpenAIRegion;
+	FString Text;
 	EOpenAIApiType OpenAIApiType;
 	void HandleRequest(FHttpRequestPtr HttpRequest, FHttpResponsePtr HttpResponse, bool bSuccess);
 	FString ComposePrompt(const TArray<FString>& Inputs);

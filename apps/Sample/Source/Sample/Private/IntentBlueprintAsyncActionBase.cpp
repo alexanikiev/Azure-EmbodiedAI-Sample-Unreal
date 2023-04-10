@@ -14,13 +14,15 @@ void UIntentBlueprintAsyncActionBase::Activate()
 	FString LowercaseText = Text.ToLower();
 	FString OutputText = "None";
 
-	if (LowercaseText.Contains("chat"))
+	UE_LOG(LogTemp, Display, TEXT("Lowercase Text: %s"), *LowercaseText);
+
+	if (LowercaseText.Contains("chat") || LowercaseText.Contains("chad"))
 	{
-		OutputText = "OpenAI_ChatGPT";
+		OutputText = "ChatGPT";
 	}
 	else if (LowercaseText.Contains("dalle") || LowercaseText.Contains("dali"))
 	{
-		OutputText = "OpenAI_DALLE";
+		OutputText = "DALLE";
 	}
 
 	OnSuccess.Broadcast(OutputText);
