@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintAsyncActionBase.h"
+//#include "Paths.h"
 #include <speechapi_cxx.h>
 #include "SpeakBlueprintAsyncActionBase.generated.h"
 
@@ -20,7 +21,7 @@ class SAMPLE_API USpeakBlueprintAsyncActionBase : public UBlueprintAsyncActionBa
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Sample")
-		static USpeakBlueprintAsyncActionBase* SampleSpeak(const FString& SubscriptionKey, const FString& Region, const FString& Text);
+		static USpeakBlueprintAsyncActionBase* SampleSpeak(const FString& Text);
 
 	UPROPERTY(BlueprintAssignable)
 		FOnSpeakResult OnSuccess;

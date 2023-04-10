@@ -20,7 +20,7 @@ class SAMPLE_API UListenBlueprintAsyncActionBase : public UBlueprintAsyncActionB
 
 public:
 	UFUNCTION(BlueprintCallable, Category = "Sample")
-		static UListenBlueprintAsyncActionBase* SampleListen(const FString& SubscriptionKey, const FString& Region);
+		static UListenBlueprintAsyncActionBase* SampleListen();
 
 	UPROPERTY(BlueprintAssignable)
 		FOnListenResult OnSuccess;

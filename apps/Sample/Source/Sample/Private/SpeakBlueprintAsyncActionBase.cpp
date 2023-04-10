@@ -5,11 +5,37 @@
 using namespace Microsoft::CognitiveServices::Speech;
 using namespace Microsoft::CognitiveServices::Speech::Audio;
 
-USpeakBlueprintAsyncActionBase* USpeakBlueprintAsyncActionBase::SampleSpeak(const FString& SubscriptionKey, const FString& Region, const FString& Text)
+struct FConfigData
 {
+	FString TTSSubscriptionKey;
+	FString TTSRegion;
+};
+
+USpeakBlueprintAsyncActionBase* USpeakBlueprintAsyncActionBase::SampleSpeak(const FString& Text)
+{
+	FString ConfigPath = FPaths::ProjectSavedDir() + TEXT("Config/Sample.auth");
+	FString JsonString;
+	FFileHelper::LoadFileToString(JsonString, *ConfigPath);
+
+	TSharedPtr<FJsonObject> JsonObject;
+	TSharedRef<TJsonReader<>> JsonReader = TJsonReaderFactory<>::Create(JsonString);
+	FConfigData ConfigData;
+	if (FJsonSerializer::Deserialize(JsonReader, JsonObject))
+	{
+		JsonObject->TryGetStringField("TTSSubscriptionKey", ConfigData.TTSSubscriptionKey);
+		JsonObject->TryGetStringField("TTSRegion", ConfigData.TTSRegion);
+
+		UE_LOG(LogTemp, Log, TEXT("SubscriptionKey: %s"), *ConfigData.TTSSubscriptionKey);
+		UE_LOG(LogTemp, Log, TEXT("Region: %s"), *ConfigData.TTSRegion);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Failed to parse JSON file: %s"), *ConfigPath);
+	}
+
 	USpeakBlueprintAsyncActionBase* SpeakAction = NewObject<USpeakBlueprintAsyncActionBase>();
-	SpeakAction->SubscriptionKey = SubscriptionKey;
-	SpeakAction->Region = Region;
+	SpeakAction->SubscriptionKey = *ConfigData.TTSSubscriptionKey;
+	SpeakAction->Region = *ConfigData.TTSRegion;
 	SpeakAction->Text = Text;
 	return SpeakAction;
 }
