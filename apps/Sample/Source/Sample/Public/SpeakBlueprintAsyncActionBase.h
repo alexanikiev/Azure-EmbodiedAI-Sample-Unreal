@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintAsyncActionBase.h"
-//#include "Paths.h"
 #include <speechapi_cxx.h>
 #include "SpeakBlueprintAsyncActionBase.generated.h"
 
