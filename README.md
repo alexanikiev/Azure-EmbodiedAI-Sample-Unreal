@@ -5,6 +5,10 @@ Embodied AI Sample Unreal project using Microsoft Azure Cloud and Edge
 
 Under construction
 
+## OpenAI
+
+OpenAI Cookbook: https://github.com/openai/openai-cookbook
+
 ## Prerequisites
 
 | Prerequisite                   | Download Link                                                     | Version           |
